@@ -7,7 +7,7 @@ use sha2::{Sha256, Digest};
 fn main(filename: String) -> String{
     // Read  Data 
     let file = File::open(filename).unwrap();
-    let mut line = String::new();
+   
     let mut reader = BufReader::new(file);
 
     // Vector words 
@@ -25,7 +25,7 @@ fn main(filename: String) -> String{
     for i in 1..text_words.len(){
         let line_hash = hash_input(&text_words[i]);
         text_hashes.push((&line_hash).to_string());
-        println!("Word is --{}-- hash is {}", text_words[i], text_hashes[i-1])
+        println!("Word:{}/n hash:{}", text_words[i], text_hashes[i-1])
     }
     
     //2^n 
@@ -36,7 +36,7 @@ fn main(filename: String) -> String{
 
     // Find root hash
     let root_hash = create_next_level(text_hashes);
-    println!("Root hash : {}", root_hash);
+    println!("Root hash:{}", root_hash);
    
         return  root_hash.to_string()
 
@@ -48,7 +48,7 @@ fn create_next_level(current_level: Vec::<String>) -> String {
     let mut length_of_hash = current_level.len();
 
     let mut new_vec = current_level.clone();
-    println!("second hashes came incoming :{:?}",new_vec);
+    println!("second hashes incoming :{:?}",new_vec);
 
     let mut hashes = Vec::new();
     
